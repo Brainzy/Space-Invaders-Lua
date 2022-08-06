@@ -12,8 +12,6 @@ local Model = {
 Model.shipParams = {
     assetName = "ship",
     speed = 400,
-    fireRate = 0.5,
-    bullets
 }
 
 Model.starsParams = {
@@ -25,6 +23,12 @@ Model.starsParams = {
 Model.bulletsParams = {
     assetName = "bullet",
     speed = 500,
+}
+
+Model.weaponFireManagerParams = {
+    fireRate = 0.5,
+    bullets,
+    ship
 }
 
 

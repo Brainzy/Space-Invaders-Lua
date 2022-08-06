@@ -1,13 +1,11 @@
 local classes = require("classes")
 local Ship = classes.class()
 local Model = require("Model")
-local fireTimer = 0
 
 function Ship:init(params)
     print("Ship init!")
     self.speed = params.speed
     self.asset = params.asset
-    self.fireRate = params.fireRate
     self.x = Model.stage.stageWidth / 2
     self.y = Model.stage.stageHeight / 2
     self.w = self.asset:getWidth()
@@ -16,7 +14,6 @@ function Ship:init(params)
     self.screenBoundMaxWidth = Model.stage.stageWidth - self.w/2
     self.screenBoundMinHeight = self.h/2
     self.screenBoundMaxHeight = Model.stage.stageHeight - self.h/2
-    self.bullets= params.bullets
 end
 
 function Ship:update(dt)
@@ -38,27 +35,22 @@ function Ship:update(dt)
         y = y + 1
     end
     
-    
     self.x = self.x + (x * self.speed * dt)
     self.x = Clamp(self.screenBoundMinWidth, self.x, self.screenBoundMaxWidth);
     
     self.y = self.y + (y * self.speed * dt)
     self.y = Clamp(self.screenBoundMinHeight, self.y, self.screenBoundMaxHeight);
     
-    fireTimer = fireTimer - dt
-    if Model.movement.space then
-      if (fireTimer < 0) then
-        self.bullets:SpawnNewBullet(self.x-self.w/4, self.y-self.h/2)
-        fireTimer = self.fireRate;
-      end
-    end
 end
-
 
 function Ship:draw()
     local newX = self.x - (self.w/2)
     local newY = self.y - (self.h/2)
     love.graphics.draw(self.asset, newX,newY )
+end
+
+function Ship:ReturnBulletSpawnPosition()
+  return self.x-self.w/4, self.y-self.h/2
 end
 
 

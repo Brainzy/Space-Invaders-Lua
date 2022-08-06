@@ -17,10 +17,13 @@ end
 
 
 function Bullets:update(dt)
-  for i=1, #bulletsArr do
+  --for i = #t, 1, -1 do
+  for i=#bulletsArr, 1, -1 do --iterate backwards so its safe to remove out of bounds bullets
     bulletsArr[i].y = bulletsArr[i].y +(-1*self.speed * dt)
     
-    --if (bulletsArr[i].y > 
+    if (bulletsArr[i].y < 0) then
+      table.remove(bulletsArr, i)
+    end
     
   end
    

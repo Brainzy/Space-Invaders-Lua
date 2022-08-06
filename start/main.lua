@@ -20,6 +20,9 @@ local bullets = nil
 local AssetsManager = require("AssetsManager")
 local Model = require("Model")
 
+local WeaponFireManagerCls = require("WeaponFireManager")
+local weaponFireManager= nil
+
 local LEFT_KEY = "left"
 local RIGHT_KEY = "right"
 local UP_KEY = "up"
@@ -33,8 +36,10 @@ function love.load()
     Model.init()
     stars = StarsCls.new( Model.starsParams)
     bullets= BulletsCls.new ( Model.bulletsParams )
-    Model.shipParams.bullets = bullets
     ship = ShipCls.new( Model.shipParams)
+    Model.weaponFireManagerParams.bullets = bullets
+    Model.weaponFireManagerParams.ship = ship
+    weaponFireManager = WeaponFireManagerCls.new ( Model.weaponFireManagerParams )
 end
 
 function love.update(dt)
@@ -42,6 +47,7 @@ function love.update(dt)
     ship:update(dt)
     stars:update(dt)
     bullets: update(dt)
+    weaponFireManager: update(dt)
 end
 
 
@@ -49,8 +55,7 @@ function love.draw()
     --love.graphics.draw(AssetsManager.sprites.fireAngles, 0,0 )
     stars:draw()
     ship:draw()
-    bullets:draw()
-    
+    bullets:draw()    
     --love.graphics.print("You Win!", 180, 350)
 end
 
