@@ -11,7 +11,9 @@ local Model = {
 
 Model.shipParams = {
     assetName = "ship",
-    speed = 500
+    speed = 400,
+    fireRate = 0.5,
+    bullets
 }
 
 Model.starsParams = {
@@ -22,8 +24,9 @@ Model.starsParams = {
 
 Model.bulletsParams = {
     assetName = "bullet",
-    speed = 300,
+    speed = 500,
 }
+
 
 Model.init = function()
     Model.stage = {

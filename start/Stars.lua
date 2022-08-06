@@ -46,12 +46,6 @@ function Stars:draw()
         local star = starsArr[i]
         love.graphics.circle("fill", star.x, star.y, radius) -- Draw white circle with 100 segments.
     end
-    
-    
 end
-
-
-
-
 
 return Stars

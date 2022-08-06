@@ -32,8 +32,9 @@ function love.load()
     AssetsManager.init()
     Model.init()
     stars = StarsCls.new( Model.starsParams)
-    ship = ShipCls.new( Model.shipParams )
-    bullets= BulletsCls.new (Model.bulletsParams)
+    bullets= BulletsCls.new ( Model.bulletsParams )
+    Model.shipParams.bullets = bullets
+    ship = ShipCls.new( Model.shipParams)
 end
 
 function love.update(dt)
@@ -93,6 +94,9 @@ function love.keyreleased(key)
    
 end
 
+function Clamp(min, val, max)
+    return math.max(min, math.min(val, max));
+end
 --
 --
 
