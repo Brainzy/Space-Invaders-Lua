@@ -14,7 +14,7 @@ spawnTimer = spawnTimer - dt
 
   if (spawnTimer < 0) then
      self.enemies:SpawnEnemy(Model.enemyPatrolShootEasyParams)
-     spawnTimer = 5
+     spawnTimer = 1
   end
     
     

@@ -41,7 +41,12 @@ Model.weaponFireManagerParams = {
 }
 
 Model.playerHealthManagerParams = {
-  ship
+  assetName = "health",
+  health = 3,
+}
+
+Model.playerLivesManagerParams = {
+  lives = 3,
 }
 
 Model.collisionManagerParams = {
@@ -50,10 +55,12 @@ Model.collisionManagerParams = {
 }
 
 Model.enemyPatrolShootEasyParams = {
-    speed = 200,
+    speed = 100,
     fireRate = 3,
-    movesLeftToRight = true,
-    movesDown = false,
+    moveSide = true,
+    rngDirSides = 99999999,
+    moveDown = true,
+    rngDirDown = 99999999,
     weaponType = "normal",
     bulletSpeed = 200
 }
@@ -79,6 +86,7 @@ Model.init = function()
     --init assets dynamically
     Model.shipParams.asset = AssetsManager.sprites[Model.shipParams.assetName]
     Model.playerBulletParams.asset = AssetsManager.sprites[Model.playerBulletParams.assetName]
+    Model.playerHealthManagerParams.asset = AssetsManager.sprites[Model.playerHealthManagerParams.assetName]
     
     --define enemies here
     Model.enemyParams.asset = AssetsManager.sprites[Model.enemyParams.assetName]

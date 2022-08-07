@@ -38,6 +38,9 @@ local enemyBullets = nil
 local PlayerHealthManagerCls = require("PlayerHealthManager")
 local playerHealthManager = nil
 
+local PlayerLivesManagerCls = require("PlayerLivesManager")
+local playerLivesManager = nil
+
 local LEFT_KEY = "left"
 local RIGHT_KEY = "right"
 local UP_KEY = "up"
@@ -74,8 +77,10 @@ function love.load()
     Model.collisionManagerParams.ship = ship
     collisionManager = CollisionManagerCls.new ( Model.collisionManagerParams  )
     
-    Model.playerHealthManagerParams.ship = ship
     playerHealthManager = PlayerHealthManagerCls.new ( Model.playerHealthManagerParams )
+    
+    Model.playerLivesManagerParams.ship = ship
+    playerLivesManager = PlayerLivesManagerCls.new ( Model.playerLivesManagerParams )
    
 end
 
@@ -100,6 +105,8 @@ function love.draw()
     bullets:draw()   
     enemies:draw()
     enemyBullets:draw()
+    playerHealthManager:draw()
+    playerLivesManager:draw()
     --love.graphics.print("You Win!", 180, 350)
 end
 

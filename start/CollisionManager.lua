@@ -13,6 +13,7 @@ function CheckPlayerCollisionWithEnemies(x,y,w,h)
      for j=1, #enemyArr do
       if (CheckCollision(x,y,w,h, enemyArr[j].x,  enemyArr[j].y, enemyArr[j].w, enemyArr[j].h)) then
          enemies:DestroyedByPlayer(enemyArr[j].index)
+         PlayerTookDamage(1)
          return true
       end
     end

@@ -28,7 +28,7 @@ function EnemyBullets:update(dt)
     local removeThisBullet = false
     
      if (CheckCollision(bulletsArr[i].x, bulletsArr[i].y, self.w, self.h, shipX,  shipY, self.shipW, self.shipH)) then
-         
+         PlayerTookDamage(1)
          removeThisBullet = true
       end
 
