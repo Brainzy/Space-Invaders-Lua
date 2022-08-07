@@ -10,10 +10,12 @@ function Ship:init(params)
     self.y = Model.stage.stageHeight / 2
     self.w = self.asset:getWidth()
     self.h = self.asset:getHeight()
-    self.screenBoundMinWidth = self.w/2
-    self.screenBoundMaxWidth = Model.stage.stageWidth - self.w/2
-    self.screenBoundMinHeight = self.h/2
-    self.screenBoundMaxHeight = Model.stage.stageHeight - self.h/2
+    self.hw = self.w/2
+    self.hh = self.h/2
+    self.screenBoundMinWidth = self.hw
+    self.screenBoundMaxWidth = Model.stage.stageWidth - self.hw
+    self.screenBoundMinHeight = self.hh
+    self.screenBoundMaxHeight = Model.stage.stageHeight - self.hh
 end
 
 function Ship:update(dt)
@@ -41,17 +43,26 @@ function Ship:update(dt)
     self.y = self.y + (y * self.speed * dt)
     self.y = Clamp(self.screenBoundMinHeight, self.y, self.screenBoundMaxHeight);
     
+    CheckPlayerCollisionWithEnemies(self.x, self.y, self.w, self.h)
+    
 end
 
 function Ship:draw()
-    local newX = self.x - (self.w/2)
-    local newY = self.y - (self.h/2)
+    local newX = self.x - self.hw
+    local newY = self.y - self.hh
     love.graphics.draw(self.asset, newX,newY )
 end
 
 function Ship:ReturnBulletSpawnPosition()
-  return self.x-self.w/4, self.y-self.h/2
+  return self.x-self.hw/2, self.y-self.hh
 end
 
+function Ship:ReturnPosition()
+  return self.x, self.y
+end
+
+function Ship:ReturnWidthAndHeight()
+  return self.h, self.w
+end
 
 return Ship

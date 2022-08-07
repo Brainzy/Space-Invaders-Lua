@@ -23,31 +23,73 @@ local Model = require("Model")
 local WeaponFireManagerCls = require("WeaponFireManager")
 local weaponFireManager= nil
 
+local EnemySpawnerCls = require("EnemySpawner")
+local enemySpawner = nil
+
+local EnemiesCls = require("Enemies")
+local enemies = nil
+
+local CollisionManagerCls = require("CollisionManager")
+local collisionManager = nil
+
+local EnemyBuleltsCls = require("EnemyBullets")
+local enemyBullets = nil
+
+local PlayerHealthManagerCls = require("PlayerHealthManager")
+local playerHealthManager = nil
+
 local LEFT_KEY = "left"
 local RIGHT_KEY = "right"
 local UP_KEY = "up"
 local DOWN_KEY = "down"
 local SPACE_KEY = "space"
+local ESC_KEY = "escape"
 
+local pauseGame=false
 
 function love.load()
     print("love.load")
     AssetsManager.init()
     Model.init()
     stars = StarsCls.new( Model.starsParams)
-    bullets= BulletsCls.new (Model.bulletAsset)
-    ship = ShipCls.new( Model.shipParams)
+    ship = ShipCls.new( Model.shipParams )  
+    
+    Model.enemyBulletParams.ship = ship
+    enemyBullets = EnemyBuleltsCls.new ( Model.enemyBulletParams )
+    
+    Model.enemyParams.enemyBullets = enemyBullets
+    enemies = EnemiesCls.new( Model.enemyParams )
+    
+    Model.enemySpawnerParams.enemies = enemies
+    enemySpawner = EnemySpawnerCls.new( Model.enemySpawnerParams )
+    
+    Model.playerBulletParams.enemies = enemies
+    bullets= BulletsCls.new ( Model.playerBulletParams )
+    
     Model.weaponFireManagerParams.bullets = bullets
     Model.weaponFireManagerParams.ship = ship
     weaponFireManager = WeaponFireManagerCls.new ( Model.weaponFireManagerParams )
+    
+    Model.collisionManagerParams.enemies = enemies
+    Model.collisionManagerParams.ship = ship
+    collisionManager = CollisionManagerCls.new ( Model.collisionManagerParams  )
+    
+    Model.playerHealthManagerParams.ship = ship
+    playerHealthManager = PlayerHealthManagerCls.new ( Model.playerHealthManagerParams )
+   
 end
 
 function love.update(dt)
    -- print("update")
+  if (pauseGame==false) then
     ship:update(dt)
     stars:update(dt)
     bullets: update(dt)
     weaponFireManager: update(dt)
+    enemies: update(dt)
+    enemySpawner: update(dt)
+    enemyBullets: update(dt)
+  end
 end
 
 
@@ -55,7 +97,9 @@ function love.draw()
     --love.graphics.draw(AssetsManager.sprites.fireAngles, 0,0 )
     stars:draw()
     ship:draw()
-    bullets:draw()    
+    bullets:draw()   
+    enemies:draw()
+    enemyBullets:draw()
     --love.graphics.print("You Win!", 180, 350)
 end
 
@@ -74,10 +118,13 @@ function love.keypressed(key)
         Model.movement.down = true
     end
     
-     if key == SPACE_KEY then
+    if key == SPACE_KEY then
       Model.movement.space = true;
     end
 
+    if key == ESC_KEY then
+      pauseGame = not pauseGame
+    end
 end
 
 function love.keyreleased(key)
@@ -101,6 +148,11 @@ end
 
 function Clamp(min, val, max)
     return math.max(min, math.min(val, max));
+end
+
+
+function PauseGame()
+  pauseGame = true
 end
 --
 --

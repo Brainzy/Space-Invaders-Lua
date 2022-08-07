@@ -1,37 +1,36 @@
 local classes = require("classes")
-local Bullets = classes.class()
+local EnemyBullets = classes.class()
 local Model = require("Model")
 local bulletsArr = {}
 local asset
-local enemies
+local ship
 
-function Bullets:init(params) 
+function EnemyBullets:init(params) 
     asset = params.asset
     self.w = asset:getWidth()
     self.h = asset:getHeight()
-    enemies = params.enemies
+    ship = params.ship
+    self.shipW, self.shipH = ship:ReturnWidthAndHeight()
 end
 
-function Bullets:SpawnNewBullet(setSpeed,posX, posY)
+function EnemyBullets:SpawnNewBullet(setSpeed,posX, posY)
   local bullet = {x = posX,y = posY, speed =  setSpeed}
   table.insert(bulletsArr, bullet)
 end
 
-
-function Bullets:update(dt)
-  local enemyArr = enemies:ReturnPositions()
+function EnemyBullets:update(dt)
+  
+  local shipX,shipY = ship:ReturnPosition()
   
   for i=#bulletsArr, 1, -1 do --iterate backwards so its safe to remove out of bounds bullets
-    bulletsArr[i].y = bulletsArr[i].y +(-1*bulletsArr[i].speed * dt)
+    bulletsArr[i].y = bulletsArr[i].y +(bulletsArr[i].speed * dt)
     
     local removeThisBullet = false
     
-    for j=1, #enemyArr do -- Is bullet colliding with enemy
-      if (CheckCollision(bulletsArr[i].x, bulletsArr[i].y, self.w, self.h, enemyArr[j].x,  enemyArr[j].y, enemyArr[j].w, enemyArr[j].h)) then
-         enemies:DestroyedByPlayer(enemyArr[j].index)
+     if (CheckCollision(bulletsArr[i].x, bulletsArr[i].y, self.w, self.h, shipX,  shipY, self.shipW, self.shipH)) then
+         
          removeThisBullet = true
       end
-    end
 
     if (bulletsArr[i].y < 0) then -- bullet out of bounds
       removeThisBullet = true
@@ -45,10 +44,10 @@ function Bullets:update(dt)
 end 
 
 
-function Bullets:draw()
+function EnemyBullets:draw()
   for i=1, #bulletsArr do
-    love.graphics.draw(asset, bulletsArr[i].x , bulletsArr[i].y)
+    love.graphics.draw(asset, bulletsArr[i].x , bulletsArr[i].y,0,1,-1)
   end
 end
 
-return Bullets
+return EnemyBullets
