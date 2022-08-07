@@ -12,8 +12,8 @@ end
 function WeaponFireManager:update(dt)
   fireTimer = fireTimer - dt
     if Model.movement.space then
-      if (fireTimer < 0) then
-        self.bullets:SpawnNewBullet(self.ship:ReturnBulletSpawnPosition())
+      if (fireTimer < 0) then       
+        self.bullets:SpawnNewBullet(Model.normalPlayerBullet.speed,self.ship:ReturnBulletSpawnPosition())
         fireTimer = self.fireRate;
       end
     end

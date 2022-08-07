@@ -20,8 +20,11 @@ Model.starsParams = {
     numStars = 200
 }
 
-Model.bulletsParams = {
+Model.bulletAsset = {
     assetName = "bullet",
+}
+
+Model.normalPlayerBullet = {
     speed = 500,
 }
 
@@ -29,6 +32,15 @@ Model.weaponFireManagerParams = {
     fireRate = 0.5,
     bullets,
     ship
+}
+
+Model.enemyPatrolShootEasyParams = {
+    assetName = "enemy",
+    speed = 200,
+    fireRate = 3,
+    movesLeftToRight = true,
+    movesDown = false,
+    weaponType = "normal"
 }
 
 
@@ -41,9 +53,10 @@ Model.init = function()
     
     --init assets dynamically
     Model.shipParams.asset = AssetsManager.sprites[Model.shipParams.assetName]
-    Model.bulletsParams.asset = AssetsManager.sprites[Model.bulletsParams.assetName]
+    Model.bulletAsset.asset = AssetsManager.sprites[Model.bulletAsset.assetName]
     
     --define enemies here
+    Model.enemyPatrolShootEasyParams.asset = AssetsManager.sprites[Model.enemyPatrolShootEasyParams.assetName]
 
 end
 

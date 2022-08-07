@@ -35,7 +35,7 @@ function love.load()
     AssetsManager.init()
     Model.init()
     stars = StarsCls.new( Model.starsParams)
-    bullets= BulletsCls.new ( Model.bulletsParams )
+    bullets= BulletsCls.new (Model.bulletAsset)
     ship = ShipCls.new( Model.shipParams)
     Model.weaponFireManagerParams.bullets = bullets
     Model.weaponFireManagerParams.ship = ship
