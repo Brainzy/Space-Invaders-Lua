@@ -48,9 +48,15 @@ function Enemies: ReturnEnemyNumber()
 end
 
 function Enemies:DestroyedByPlayer(index)
+  
+  local enemy = enemiesArr[index]
+  
+  if (enemy) then
   PlayerKilledEnemyScoreEnter()
-  explosionManager:EnemyExploded(enemiesArr[index].x, enemiesArr[index].y)
+  EnemyDiedPowerUpSpawnCheck(enemy.x, enemy.y)
+  explosionManager:EnemyExploded(enemy.x, enemy.y)
   table.remove(enemiesArr, index)
+  end
 end
 
 function Enemies:update(dt)

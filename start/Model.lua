@@ -22,7 +22,8 @@ Model.starsParams = {
 
 Model.playerBulletParams = {
     assetName = "bullet",
-    enemies
+    enemies,
+    xSpeed = 125
 }
 
 Model.enemyBulletParams = {
@@ -67,10 +68,21 @@ Model.scoreDisplayManagerParams = {
 }
 
 Model.timedPowerUpSpawnerParams = {
-  rngOnEnemyDeath = 10,
+  fireAnglesName = "fireAngles",
+  fireRateName= "fireRate",
+  magnetName= "magnet",
+  shieldName= "shield",
+  rngOnEnemyDeath = 100,
+  altAnglesChance = 25,
+  greaterFireChance= 25,
+  shieldChance = 25,
+  magnetChance = 25, 
+  powerUpFireRate = 0.2,
+  powerUpFireRateDuration = 10,
+  altAngleDuration = 10,
+  shieldDuration = 10,
+  magnetDuration = 10
 }
-
---timedPowerUpSpawnerParams
 
 Model.healthPackSpawnerParams = {
   assetName = "health",
@@ -136,7 +148,11 @@ Model.init = function()
     Model.explosionManagerParams.asset = AssetsManager.sprites[Model.explosionManagerParams.assetName]
     Model.coinSpawnerParams.asset = AssetsManager.sprites[Model.coinSpawnerParams.assetName]
     Model.healthPackSpawnerParams.asset = AssetsManager.sprites[Model.healthPackSpawnerParams.assetName]
-    
+    Model.timedPowerUpSpawnerParams.fireAnglesAsset = AssetsManager.sprites[Model.timedPowerUpSpawnerParams.fireAnglesName]
+    Model.timedPowerUpSpawnerParams.magnetAsset = AssetsManager.sprites[Model.timedPowerUpSpawnerParams.magnetName]
+    Model.timedPowerUpSpawnerParams.fireRateAsset = AssetsManager.sprites[Model.timedPowerUpSpawnerParams.fireRateName]
+    Model.timedPowerUpSpawnerParams.shieldAsset = AssetsManager.sprites[Model.timedPowerUpSpawnerParams.shieldName]
+     
     --define enemies here
     Model.enemyParams.asset = AssetsManager.sprites[Model.enemyParams.assetName]
     Model.enemyBulletParams.asset = AssetsManager.sprites[Model.enemyBulletParams.assetName]

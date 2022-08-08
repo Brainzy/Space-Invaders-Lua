@@ -80,6 +80,8 @@ function love.load()
     
     notificationManager = NotificationManagerCls.new (Model.notificationManagerParams)
     
+    timedPowerUpSpawner = TimedPowerUpSpawnerCls.new ( Model.timedPowerUpSpawnerParams )
+    
     coinSpawner = CoinSpawnerCls.new(Model.coinSpawnerParams)
     
     Model.explosionManagerParams.ship = ship
@@ -121,8 +123,6 @@ function love.load()
     
     scoreDisplayManager = ScoreDisplayManagerCls.new ( Model.scoreDisplayManagerParams )
     
-    timedPowerUpSpawner = TimedPowerUpSpawnerCls.new ( Model.timedPowerUpSpawnerParams )
-    
 end
 
 function love.update(dt)
@@ -139,6 +139,7 @@ function love.update(dt)
     explosionManager: update(dt)
     coinSpawner:update(dt)
     healthPackSpawner:update(dt)
+    timedPowerUpSpawner:update(dt)
   end
 end
 
@@ -157,6 +158,7 @@ function love.draw()
     coinSpawner.draw()
     scoreDisplayManager.draw()
     healthPackSpawner.draw()
+    timedPowerUpSpawner.draw()
     --love.graphics.print("You Win!", 180, 350)
 end
 

@@ -37,17 +37,49 @@ function CheckPlayerCollisionWithEnemies(x,y,w,h)
       end
     end
   
-  -- healthPacks collision
+  -- magnets collision
     
-  local packs = healthPackSpawner:ReturnHealthPacks()
-   for j=1, #packs do
-      local pack = packs[j]
-      if (CheckCollision(x,y,w,h, pack.x,  pack.y, pack.w, pack.h)) then
-          healthPackSpawner:HealthPackCollected(j)
-          PlayerCollectedHealthPack(1)
+  local magnets = ReturnMagnets()
+   for j=1, #magnets do
+      local magnet = magnets[j]
+      if (CheckCollision(x,y,w,h, magnet.x,  magnet.y, magnet.w, magnet.h)) then
+          PlayerCollidingWithPowerUpMagnets(i)
          return true
       end
-    end
+   end
+   
+   -- shields collision
+   
+   local shields = ReturnShields()
+   for j=1, #shields do
+      local shield = shields[j]
+      if (CheckCollision(x,y,w,h, shield.x,  shield.y, shield.w, shield.h)) then
+          PlayerCollidingWithPowerUpShields(j)
+         return true
+      end
+   end
+   
+    -- fireAngles collision
+   
+   local fireAngles = ReturnFireAngles()
+   for j=1, #fireAngles do
+      local fireAngle = fireAngles[j]
+      if (CheckCollision(x,y,w,h, fireAngle.x,  fireAngle.y, fireAngle.w, fireAngle.h)) then
+         PlayerCollidingWithPowerUpFireAngles(j)
+         return true
+      end
+   end
+   
+   -- fireRates collision
+   
+   local fireRates = ReturnFireRates()
+   for j=1, #fireRates do
+      local fireRate = fireRates[j]
+      if (CheckCollision(x,y,w,h, fireRate.x,  fireRate.y, fireRate.w, fireRate.h)) then
+          PlayerCollidingWithPowerUpFireRate(j)
+         return true
+      end
+   end
 end
 
 function CheckCollision(x1,y1,w1,h1, x2,y2,w2,h2)
