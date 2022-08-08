@@ -37,6 +37,7 @@ Model.normalPlayerBullet = {
 
 Model.weaponFireManagerParams = {
     fireRate = 0.5,
+    powerUpFireRate = 0.2,
     bullets,
     ship
 }
@@ -73,15 +74,14 @@ Model.timedPowerUpSpawnerParams = {
   magnetName= "magnet",
   shieldName= "shield",
   rngOnEnemyDeath = 100,
-  altAnglesChance = 25,
-  greaterFireChance= 25,
-  shieldChance = 25,
-  magnetChance = 25, 
-  powerUpFireRate = 0.2,
-  powerUpFireRateDuration = 10,
+  altAnglesChance = 0, -- 0-100, must be total 100 for all power ups
+  greaterFireChance= 0,
+  shieldChance = 0,
+  magnetChance = 100, 
   altAngleDuration = 10,
   shieldDuration = 10,
-  magnetDuration = 10
+  magnetDuration = 10,
+  powerUpFireRateDuration = 10,
 }
 
 Model.healthPackSpawnerParams = {
@@ -106,6 +106,26 @@ Model.coinSpawnerParams = {
   assetName = "coin",
   rng = 20, -- every second rolls 0,100
   expiresAfter = 3
+}
+
+Model.powerFireAnglesParams = {
+  duration = 8
+}
+
+Model.powerFireRateParams = {
+  duration = 8
+}
+
+Model.powerMagnetParams = {
+  duration = 8,
+  maxDistance = 40000,
+  coinDrawInSpeed = 400,
+  coinSpawner,
+  ship
+}
+
+Model.powerShieldsParams = {
+  duration = 8
 }
 
 Model.explosionManagerParams = {

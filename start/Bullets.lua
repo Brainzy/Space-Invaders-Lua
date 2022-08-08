@@ -33,7 +33,6 @@ function Bullets:SpawnNewBullet(setSpeed, bulletType, posX, posY)
   
 end
 
-
 function Bullets:update(dt)
   
   local enemyArr = enemies:ReturnPositions()

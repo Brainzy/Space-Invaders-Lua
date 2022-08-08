@@ -62,6 +62,18 @@ local healthPackSpawner = nil
 local TimedPowerUpSpawnerCls = require("TimedPowerUpSpawner")
 local timedPowerUpSpawner = nil
 
+local PowerFireAnglesCls = require("PowerFireAngles")
+local powerFireAngles = nil
+
+local PowerFireRateCls = require("PowerFireRate")
+local powerFireRate = nil
+
+local PowerShieldsCls = require("PowerShields")
+local powerShields = nil
+
+local PowerMagnetCls = require("PowerMagnet")
+local powerMagnet = nil
+
 local LEFT_KEY = "left"
 local RIGHT_KEY = "right"
 local UP_KEY = "up"
@@ -123,6 +135,15 @@ function love.load()
     
     scoreDisplayManager = ScoreDisplayManagerCls.new ( Model.scoreDisplayManagerParams )
     
+    powerFireAngles = PowerFireAnglesCls.new ( Model.powerFireAnglesParams )
+    powerFireRate = PowerFireRateCls.new ( Model.powerFireRateParams )
+    
+    Model.powerMagnetParams.coinSpawner = coinSpawner
+    Model.powerMagnetParams.ship = ship
+    powerMagnet = PowerMagnetCls.new ( Model.powerMagnetParams )
+    
+    powerShields = PowerShieldsCls.new ( Model.powerShieldsParams )
+    
 end
 
 function love.update(dt)
@@ -140,6 +161,10 @@ function love.update(dt)
     coinSpawner:update(dt)
     healthPackSpawner:update(dt)
     timedPowerUpSpawner:update(dt)
+    powerFireAngles:update(dt)
+    powerFireRate:update(dt)
+    powerMagnet:update(dt)
+    powerShields:update(dt)
   end
 end
 

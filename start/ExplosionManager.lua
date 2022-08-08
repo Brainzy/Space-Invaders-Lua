@@ -10,7 +10,6 @@ local explosionDuration
 local width
 local height
 
-
 function ExplosionManager:init(params)
     self.asset = params.asset
     width = self.asset:getWidth()/2

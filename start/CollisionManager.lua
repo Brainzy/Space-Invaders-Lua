@@ -44,6 +44,7 @@ function CheckPlayerCollisionWithEnemies(x,y,w,h)
       local magnet = magnets[j]
       if (CheckCollision(x,y,w,h, magnet.x,  magnet.y, magnet.w, magnet.h)) then
           PlayerCollidingWithPowerUpMagnets(i)
+          PowerMagnetActivated()
          return true
       end
    end
@@ -55,6 +56,7 @@ function CheckPlayerCollisionWithEnemies(x,y,w,h)
       local shield = shields[j]
       if (CheckCollision(x,y,w,h, shield.x,  shield.y, shield.w, shield.h)) then
           PlayerCollidingWithPowerUpShields(j)
+          PowerShieldsActivated()
          return true
       end
    end
@@ -66,6 +68,7 @@ function CheckPlayerCollisionWithEnemies(x,y,w,h)
       local fireAngle = fireAngles[j]
       if (CheckCollision(x,y,w,h, fireAngle.x,  fireAngle.y, fireAngle.w, fireAngle.h)) then
          PlayerCollidingWithPowerUpFireAngles(j)
+         PowerFireAnglesActivated()
          return true
       end
    end
@@ -77,6 +80,7 @@ function CheckPlayerCollisionWithEnemies(x,y,w,h)
       local fireRate = fireRates[j]
       if (CheckCollision(x,y,w,h, fireRate.x,  fireRate.y, fireRate.w, fireRate.h)) then
           PlayerCollidingWithPowerUpFireRate(j)
+          PowerFireRateActivated()
          return true
       end
    end
