@@ -41,6 +41,9 @@ local playerHealthManager = nil
 local PlayerLivesManagerCls = require("PlayerLivesManager")
 local playerLivesManager = nil
 
+local WaveParamsCls = require("WaveParams")
+local waveParams = nil
+
 local LEFT_KEY = "left"
 local RIGHT_KEY = "right"
 local UP_KEY = "up"
@@ -63,7 +66,10 @@ function love.load()
     Model.enemyParams.enemyBullets = enemyBullets
     enemies = EnemiesCls.new( Model.enemyParams )
     
+    waveParams = WaveParamsCls.new ()
+    
     Model.enemySpawnerParams.enemies = enemies
+    Model.enemySpawnerParams.waveParams = waveParams
     enemySpawner = EnemySpawnerCls.new( Model.enemySpawnerParams )
     
     Model.playerBulletParams.enemies = enemies
@@ -81,12 +87,14 @@ function love.load()
     
     Model.playerLivesManagerParams.ship = ship
     playerLivesManager = PlayerLivesManagerCls.new ( Model.playerLivesManagerParams )
-   
+    
+    
+    
 end
 
 function love.update(dt)
    -- print("update")
-  if (pauseGame==false) then
+  if (pauseGame == false) then
     ship:update(dt)
     stars:update(dt)
     bullets: update(dt)
@@ -107,6 +115,7 @@ function love.draw()
     enemyBullets:draw()
     playerHealthManager:draw()
     playerLivesManager:draw()
+    enemySpawner: draw()
     --love.graphics.print("You Win!", 180, 350)
 end
 

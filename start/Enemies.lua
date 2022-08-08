@@ -41,6 +41,10 @@ function Enemies: ReturnPositions()
   return positionsArr
 end
 
+function Enemies: ReturnEnemyNumber()
+  return #enemiesArr
+end
+
 function Enemies:DestroyedByPlayer(index)
   table.remove(enemiesArr, index)
 end
@@ -97,6 +101,7 @@ function Enemies:draw()
     love.graphics.draw(asset, enemiesArr[i].x , enemiesArr[i].y)
   end
 end
+
 
 
 return Enemies

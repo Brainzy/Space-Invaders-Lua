@@ -59,8 +59,19 @@ Model.enemyPatrolShootEasyParams = {
     fireRate = 3,
     moveSide = true,
     rngDirSides = 99999999,
-    moveDown = true,
+    moveDown = false,
     rngDirDown = 99999999,
+    weaponType = "normal",
+    bulletSpeed = 200
+}
+
+Model.enemyKamikazeEasy = {
+    speed = 300,
+    fireRate = 9999999,
+    moveSide = true,
+    rngDirSides = 99999999,
+    moveDown = true,
+    rngDirDown = 600,
     weaponType = "normal",
     bulletSpeed = 200
 }
@@ -72,7 +83,8 @@ Model.enemyParams = {
 }
 
 Model.enemySpawnerParams = {
-   enemies
+   enemies,
+   waveParams
 }
 
 
@@ -81,7 +93,6 @@ Model.init = function()
         stageHeight = love.graphics.getHeight(),
         stageWidth = love.graphics.getWidth()
     }
-    
     
     --init assets dynamically
     Model.shipParams.asset = AssetsManager.sprites[Model.shipParams.assetName]
