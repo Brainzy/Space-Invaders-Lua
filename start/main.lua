@@ -47,6 +47,15 @@ local waveParams = nil
 local NotificationManagerCls = require("NotificationManager")
 local notificationManager = nil
 
+local ExplosionManagerCls = require("ExplosionManager")
+local explosionManager = nil
+
+local CoinSpawnerCls = require("CoinSpawner")
+local coinSpawner = nil
+
+local ScoreDisplayManagerCls = require("ScoreDisplayManager")
+local scoreDisplayManager = nil
+
 local LEFT_KEY = "left"
 local RIGHT_KEY = "right"
 local UP_KEY = "up"
@@ -65,10 +74,16 @@ function love.load()
     
     notificationManager = NotificationManagerCls.new (Model.notificationManagerParams)
     
+    coinSpawner = CoinSpawnerCls.new(Model.coinSpawnerParams)
+    
+    Model.explosionManagerParams.ship = ship
+    explosionManager = ExplosionManagerCls.new(Model.explosionManagerParams)
+    
     Model.enemyBulletParams.ship = ship
     enemyBullets = EnemyBuleltsCls.new ( Model.enemyBulletParams )
     
     Model.enemyParams.enemyBullets = enemyBullets
+    Model.enemyParams.explosionManager = explosionManager
     enemies = EnemiesCls.new( Model.enemyParams )
     
     waveParams = WaveParamsCls.new ()
@@ -87,6 +102,7 @@ function love.load()
     
     Model.collisionManagerParams.enemies = enemies
     Model.collisionManagerParams.ship = ship
+     Model.collisionManagerParams.coinSpawner = coinSpawner
     collisionManager = CollisionManagerCls.new ( Model.collisionManagerParams  )
     
     playerHealthManager = PlayerHealthManagerCls.new ( Model.playerHealthManagerParams )
@@ -94,7 +110,8 @@ function love.load()
     Model.playerLivesManagerParams.ship = ship
     playerLivesManager = PlayerLivesManagerCls.new ( Model.playerLivesManagerParams )
     
-   
+    scoreDisplayManager = ScoreDisplayManagerCls.new ( Model.scoreDisplayManagerParams )
+    
 end
 
 function love.update(dt)
@@ -108,6 +125,8 @@ function love.update(dt)
     enemySpawner: update(dt)
     enemyBullets: update(dt)
     notificationManager:update(dt)
+    explosionManager: update(dt)
+    coinSpawner:update(dt)
   end
 end
 
@@ -122,6 +141,9 @@ function love.draw()
     playerHealthManager:draw()
     playerLivesManager:draw()
     notificationManager:draw()
+    explosionManager:draw()
+    coinSpawner.draw()
+    scoreDisplayManager.draw()
     --love.graphics.print("You Win!", 180, 350)
 end
 

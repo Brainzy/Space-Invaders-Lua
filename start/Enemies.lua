@@ -3,6 +3,7 @@ local Enemies = classes.class()
 local Model = require("Model")
 local enemiesArr = {}
 local asset
+local explosionManager
 
 function Enemies:init(params) 
     asset =params.asset
@@ -16,6 +17,7 @@ function Enemies:init(params)
     self.screenBoundMaxWidth = Model.stage.stageWidth - self.w
     self.screenBoundMinHeight = 0
     self.screenBoundMaxHeight = Model.stage.stageHeight - self.h
+    explosionManager = params.explosionManager
 end
 
 function Enemies: SpawnEnemy(params)
@@ -46,6 +48,8 @@ function Enemies: ReturnEnemyNumber()
 end
 
 function Enemies:DestroyedByPlayer(index)
+  PlayerKilledEnemyScoreEnter()
+  explosionManager:EnemyExploded(enemiesArr[index].x, enemiesArr[index].y)
   table.remove(enemiesArr, index)
 end
 

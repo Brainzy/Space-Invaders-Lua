@@ -31,22 +31,21 @@ function EnemySpawner:MakeCurrentLevelParams()
     if (lvl.level > maxLevel) then
       maxLevel = lvl.level
     end
-    print("pravim novu tabelu nivo je ", lvl.level)     
     
     if (lvl.level == currentLevel) then
       
       local lvlParam = {start = lvl.start + timer , endTime = lvl.endTime + timer, interval = lvl.interval, lastSpawn = 0, enemy = lvl.enemy}
       table.insert( levelParams, lvlParam )
       
-      if (lvl.endTime > currentLevelDuration) then
-        currentLevelDuration = lvl.endTime
+      if (lvl.endTime +timer > currentLevelDuration) then
+        currentLevelDuration = lvl.endTime + timer
       end
     end
   end
   
   for i=1, #levelParams do
    local lvl = levelParams[i]
-   print(lvl.start, lvl.endTime, lvl.interval, lvl.lastSpawn, lvl.enemy)
+   print(timer,currentLevelDuration,lvl.start, lvl.endTime, lvl.interval, lvl.lastSpawn, lvl.enemy)
   end
   
 end
@@ -62,6 +61,7 @@ function EnemySpawner:update(dt)
       if (lvl.start <= timer  and timer <= lvl.endTime and timer - lvl.lastSpawn >= lvl.interval) then
         lvl.lastSpawn = timer
         self.enemies:SpawnEnemy(lvl.enemy)
+        --print("zadato spawnovanje neprijatelja ",lvl.enemy,timer, lvl.start, lvl.endTime)
       end
   
       if (timer > currentLevelDuration) then

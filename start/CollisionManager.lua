@@ -2,19 +2,36 @@ local classes = require("classes")
 local CollisionManager = classes.class()
 local Model = require("Model")
 local enemies
+local coinSpawner
 
 function CollisionManager:init(params) 
     enemies = params.enemies
+    coinSpawner = params.coinSpawner
     self.ship = params.ship
 end
 
 function CheckPlayerCollisionWithEnemies(x,y,w,h)
+  
+  --enemy collision
+  
   local enemyArr = enemies:ReturnPositions()
      for j=1, #enemyArr do
       local enemy = enemyArr[j]
       if (CheckCollision(x,y,w,h, enemy.x,  enemy.y, enemy.w, enemy.h)) then
          enemies:DestroyedByPlayer(enemy.index)
          PlayerTookDamage(1)
+         return true
+      end
+    end
+  
+  -- coin collision
+    
+  local coins = coinSpawner:ReturnCoins()
+   for j=1, #coins do
+      local coin = coins[j]
+      if (CheckCollision(x,y,w,h, coin.x,  coin.y, coin.w, coin.h)) then
+          coinSpawner:CoinCollected(j)
+          PlayerCollectedCoinScoreEnter()
          return true
       end
     end

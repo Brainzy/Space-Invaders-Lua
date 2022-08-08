@@ -12,6 +12,8 @@ end
 
 function PlayerLostLife()
   lives = lives - 1
+  ExplosionAtPlayer()
+  PlayerLostLifeScoreEnter()
   if (lives < 1) then
     PlayerLostGame()
     PauseGame()
