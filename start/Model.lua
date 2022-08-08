@@ -45,6 +45,10 @@ Model.playerHealthManagerParams = {
   health = 3,
 }
 
+Model.notificationManagerParams = {
+  waveClearTextDuration = 2
+}
+
 Model.playerLivesManagerParams = {
   lives = 3,
 }
@@ -52,6 +56,17 @@ Model.playerLivesManagerParams = {
 Model.collisionManagerParams = {
     enemies,
     ship
+}
+
+Model.enemyParams = {
+    assetName = "enemy",
+    enemyBullets
+}
+
+Model.enemySpawnerParams = {
+   enemies,
+   notificationManager,
+   waveParams
 }
 
 Model.enemyPatrolShootEasyParams = {
@@ -75,18 +90,6 @@ Model.enemyKamikazeEasy = {
     weaponType = "normal",
     bulletSpeed = 200
 }
-
-
-Model.enemyParams = {
-    assetName = "enemy",
-    enemyBullets
-}
-
-Model.enemySpawnerParams = {
-   enemies,
-   waveParams
-}
-
 
 Model.init = function()
     Model.stage = {

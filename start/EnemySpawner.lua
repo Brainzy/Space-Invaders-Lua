@@ -7,10 +7,12 @@ local currentLevelDuration = 0
 local levelParams = {}
 local allLevels = {}
 local maxLevel = 0
+local notificationManager
 
 function EnemySpawner:init(params)
     self.enemies = params.enemies
     self.waveParams = params.waveParams
+    notificationManager = params.notificationManager
     spawnTimer = 2
     allLevels = self.waveParams: GetAllLevels()
     EnemySpawner:MakeCurrentLevelParams()
@@ -26,6 +28,9 @@ function EnemySpawner:MakeCurrentLevelParams()
   for i=1, #allLevels do
     local lvl = allLevels[i]
     
+    if (lvl.level > maxLevel) then
+      maxLevel = lvl.level
+    end
     print("pravim novu tabelu nivo je ", lvl.level)     
     
     if (lvl.level == currentLevel) then
@@ -36,11 +41,6 @@ function EnemySpawner:MakeCurrentLevelParams()
       if (lvl.endTime > currentLevelDuration) then
         currentLevelDuration = lvl.endTime
       end
-      
-      if (lvl.level > maxLevel) then
-        maxLevel = lvl.level
-      end
-      
     end
   end
   
@@ -66,12 +66,15 @@ function EnemySpawner:update(dt)
   
       if (timer > currentLevelDuration) then
         if (self.enemies:ReturnEnemyNumber() == 0) then
-          print("level ended")
           currentLevel = currentLevel +1
           
-          if (currentLevel >= maxLevel) then
-            print("game won")
+          print(currentLevel,maxLevel)
+          
+          if (currentLevel > maxLevel) then
+            PlayerWonGame()
+            PauseGame()
           else
+            notificationManager:WaveClearNotification(currentLevel -1)
             EnemySpawner:MakeCurrentLevelParams()
           end
         end

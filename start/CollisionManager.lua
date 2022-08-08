@@ -11,8 +11,9 @@ end
 function CheckPlayerCollisionWithEnemies(x,y,w,h)
   local enemyArr = enemies:ReturnPositions()
      for j=1, #enemyArr do
-      if (CheckCollision(x,y,w,h, enemyArr[j].x,  enemyArr[j].y, enemyArr[j].w, enemyArr[j].h)) then
-         enemies:DestroyedByPlayer(enemyArr[j].index)
+      local enemy = enemyArr[j]
+      if (CheckCollision(x,y,w,h, enemy.x,  enemy.y, enemy.w, enemy.h)) then
+         enemies:DestroyedByPlayer(enemy.index)
          PlayerTookDamage(1)
          return true
       end

@@ -44,6 +44,9 @@ local playerLivesManager = nil
 local WaveParamsCls = require("WaveParams")
 local waveParams = nil
 
+local NotificationManagerCls = require("NotificationManager")
+local notificationManager = nil
+
 local LEFT_KEY = "left"
 local RIGHT_KEY = "right"
 local UP_KEY = "up"
@@ -60,6 +63,8 @@ function love.load()
     stars = StarsCls.new( Model.starsParams)
     ship = ShipCls.new( Model.shipParams )  
     
+    notificationManager = NotificationManagerCls.new (Model.notificationManagerParams)
+    
     Model.enemyBulletParams.ship = ship
     enemyBullets = EnemyBuleltsCls.new ( Model.enemyBulletParams )
     
@@ -69,6 +74,7 @@ function love.load()
     waveParams = WaveParamsCls.new ()
     
     Model.enemySpawnerParams.enemies = enemies
+    Model.enemySpawnerParams.notificationManager = notificationManager
     Model.enemySpawnerParams.waveParams = waveParams
     enemySpawner = EnemySpawnerCls.new( Model.enemySpawnerParams )
     
@@ -88,8 +94,7 @@ function love.load()
     Model.playerLivesManagerParams.ship = ship
     playerLivesManager = PlayerLivesManagerCls.new ( Model.playerLivesManagerParams )
     
-    
-    
+   
 end
 
 function love.update(dt)
@@ -102,6 +107,7 @@ function love.update(dt)
     enemies: update(dt)
     enemySpawner: update(dt)
     enemyBullets: update(dt)
+    notificationManager:update(dt)
   end
 end
 
@@ -115,13 +121,12 @@ function love.draw()
     enemyBullets:draw()
     playerHealthManager:draw()
     playerLivesManager:draw()
-    enemySpawner: draw()
+    notificationManager:draw()
     --love.graphics.print("You Win!", 180, 350)
 end
 
 
 function love.keypressed(key)
-    print(key)
     if key == LEFT_KEY then
         Model.movement.left = true
     elseif key == RIGHT_KEY then
