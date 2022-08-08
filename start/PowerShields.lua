@@ -4,8 +4,10 @@ local Model = require("Model")
 local duration
 local timer =0
 local isActive = false
+local asset
 
 function PowerShields:init(params)
+  asset = params.asset
   duration = params.duration
 end
 
@@ -23,6 +25,13 @@ function PowerShields:update(dt)
       
     end
   end
+end
+
+function PowerShields:draw()
+    --ship.x, ship.y = ship:ReturnPosition() 
+    --if (isActive) then
+     -- love.graphics.draw(asset, ship.x,ship.y )
+    --end    
 end
 
 return PowerShields

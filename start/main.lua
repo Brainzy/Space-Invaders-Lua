@@ -184,6 +184,8 @@ function love.draw()
     scoreDisplayManager.draw()
     healthPackSpawner.draw()
     timedPowerUpSpawner.draw()
+    powerMagnet.draw()
+    powerShields.draw()
     --love.graphics.print("You Win!", 180, 350)
 end
 

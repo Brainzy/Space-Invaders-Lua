@@ -8,6 +8,7 @@ local coinSpawner
 local maxDistance
 local ship
 local coinDrawInSpeed
+local asset
 
 function PowerMagnet:init(params)
   duration = params.duration
@@ -15,6 +16,7 @@ function PowerMagnet:init(params)
   maxDistance = params.maxDistance
   ship = params.ship
   coinDrawInSpeed = params.coinDrawInSpeed
+  asset = params.asset
   isActive = true
 end
 
@@ -51,5 +53,10 @@ function squareDistance ( x1, y1, x2, y2 )
   return ( dx * dx + dy * dy )
 end
 
-
+function PowerMagnet:draw()
+    ship.x, ship.y = ship:ReturnPosition() 
+    if (isActive) then
+      love.graphics.draw(asset, ship.x -9 ,ship.y - 5, 0, 0.5, 0.5 )
+    end    
+end
 return PowerMagnet

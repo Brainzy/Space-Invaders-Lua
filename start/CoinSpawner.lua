@@ -12,8 +12,8 @@ function CoinSpawner:init(params)
   asset = params.asset
   self.rng = 100 - params.rng  -- every second rolls 0,100
   self.expiresAfter = params.expiresAfter
-  w = asset:getWidth()
-  h = asset:getHeight()
+  w = asset:getWidth()+10
+  h = asset:getHeight()+10
   self.spawnX= Model.stage.stageWidth - w
   self.spawnY= Model.stage.stageWidth - h
 end

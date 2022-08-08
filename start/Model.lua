@@ -117,6 +117,7 @@ Model.powerFireRateParams = {
 }
 
 Model.powerMagnetParams = {
+  assetName = "magnet",
   duration = 8,
   maxDistance = 40000,
   coinDrawInSpeed = 400,
@@ -125,7 +126,9 @@ Model.powerMagnetParams = {
 }
 
 Model.powerShieldsParams = {
-  duration = 8
+  assetName = "health",
+  duration = 8,
+  ship
 }
 
 Model.explosionManagerParams = {
@@ -172,7 +175,9 @@ Model.init = function()
     Model.timedPowerUpSpawnerParams.magnetAsset = AssetsManager.sprites[Model.timedPowerUpSpawnerParams.magnetName]
     Model.timedPowerUpSpawnerParams.fireRateAsset = AssetsManager.sprites[Model.timedPowerUpSpawnerParams.fireRateName]
     Model.timedPowerUpSpawnerParams.shieldAsset = AssetsManager.sprites[Model.timedPowerUpSpawnerParams.shieldName]
-     
+    Model.powerShieldsParams.asset = AssetsManager.sprites[Model.powerShieldsParams.assetName]
+    Model.powerMagnetParams.asset = AssetsManager.sprites[Model.powerMagnetParams.assetName]
+    
     --define enemies here
     Model.enemyParams.asset = AssetsManager.sprites[Model.enemyParams.assetName]
     Model.enemyBulletParams.asset = AssetsManager.sprites[Model.enemyBulletParams.assetName]
