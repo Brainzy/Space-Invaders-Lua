@@ -73,15 +73,15 @@ Model.timedPowerUpSpawnerParams = {
   fireRateName= "fireRate",
   magnetName= "magnet",
   shieldName= "shield",
-  rngOnEnemyDeath = 100,
-  altAnglesChance = 0, -- 0-100, must be total 100 for all power ups
-  greaterFireChance= 0,
-  shieldChance = 0,
-  magnetChance = 100, 
-  altAngleDuration = 10,
-  shieldDuration = 10,
-  magnetDuration = 10,
-  powerUpFireRateDuration = 10,
+  rngOnEnemyDeath = 5,
+  altAnglesChance = 25, -- 0-100, must be total 100 for all power ups
+  greaterFireChance= 25,
+  shieldChance = 25,
+  magnetChance = 25, 
+  altAngleDuration = 4,
+  shieldDuration = 4,
+  magnetDuration = 4,
+  powerUpFireRateDuration = 4,
 }
 
 Model.healthPackSpawnerParams = {
@@ -118,7 +118,7 @@ Model.powerFireRateParams = {
 
 Model.powerMagnetParams = {
   assetName = "magnet",
-  duration = 8,
+  duration = 20,
   maxDistance = 40000,
   coinDrawInSpeed = 400,
   coinSpawner,
@@ -126,8 +126,9 @@ Model.powerMagnetParams = {
 }
 
 Model.powerShieldsParams = {
-  assetName = "health",
-  duration = 8,
+  assetName = "shield",
+  duration = 6,
+  shieldAmount = 15,
   ship
 }
 

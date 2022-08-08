@@ -142,6 +142,7 @@ function love.load()
     Model.powerMagnetParams.ship = ship
     powerMagnet = PowerMagnetCls.new ( Model.powerMagnetParams )
     
+    Model.powerShieldsParams.ship = ship
     powerShields = PowerShieldsCls.new ( Model.powerShieldsParams )
     
 end
