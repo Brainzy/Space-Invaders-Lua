@@ -21,6 +21,13 @@ function PlayerTookDamage(amount)
     end
 end
 
+function PlayerCollectedHealthPack(amount)
+    health = health + 1
+    if (health > startingHealth) then
+      health = startingHealth
+    end
+end
+
 function PlayerHealthManager:draw()
   for i=1, health do
     love.graphics.draw(self.asset,(i-1)*self.w, self.picH)

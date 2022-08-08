@@ -68,8 +68,6 @@ function EnemySpawner:update(dt)
         if (self.enemies:ReturnEnemyNumber() == 0) then
           currentLevel = currentLevel +1
           
-          print(currentLevel,maxLevel)
-          
           if (currentLevel > maxLevel) then
             PlayerWonGame()
             PauseGame()

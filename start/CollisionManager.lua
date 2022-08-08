@@ -8,6 +8,7 @@ function CollisionManager:init(params)
     enemies = params.enemies
     coinSpawner = params.coinSpawner
     self.ship = params.ship
+    healthPackSpawner= params.healthPackSpawner
 end
 
 function CheckPlayerCollisionWithEnemies(x,y,w,h)
@@ -32,6 +33,18 @@ function CheckPlayerCollisionWithEnemies(x,y,w,h)
       if (CheckCollision(x,y,w,h, coin.x,  coin.y, coin.w, coin.h)) then
           coinSpawner:CoinCollected(j)
           PlayerCollectedCoinScoreEnter()
+         return true
+      end
+    end
+  
+  -- healthPacks collision
+    
+  local packs = healthPackSpawner:ReturnHealthPacks()
+   for j=1, #packs do
+      local pack = packs[j]
+      if (CheckCollision(x,y,w,h, pack.x,  pack.y, pack.w, pack.h)) then
+          healthPackSpawner:HealthPackCollected(j)
+          PlayerCollectedHealthPack(1)
          return true
       end
     end

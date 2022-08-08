@@ -56,6 +56,12 @@ local coinSpawner = nil
 local ScoreDisplayManagerCls = require("ScoreDisplayManager")
 local scoreDisplayManager = nil
 
+local HealthPackSpawnerCls = require("HealthPackSpawner")
+local healthPackSpawner = nil
+
+local TimedPowerUpSpawnerCls = require("TimedPowerUpSpawner")
+local timedPowerUpSpawner = nil
+
 local LEFT_KEY = "left"
 local RIGHT_KEY = "right"
 local UP_KEY = "up"
@@ -100,9 +106,12 @@ function love.load()
     Model.weaponFireManagerParams.ship = ship
     weaponFireManager = WeaponFireManagerCls.new ( Model.weaponFireManagerParams )
     
+    healthPackSpawner = HealthPackSpawnerCls.new ( Model.healthPackSpawnerParams )
+    
     Model.collisionManagerParams.enemies = enemies
     Model.collisionManagerParams.ship = ship
-     Model.collisionManagerParams.coinSpawner = coinSpawner
+    Model.collisionManagerParams.coinSpawner = coinSpawner
+    Model.collisionManagerParams.healthPackSpawner = healthPackSpawner
     collisionManager = CollisionManagerCls.new ( Model.collisionManagerParams  )
     
     playerHealthManager = PlayerHealthManagerCls.new ( Model.playerHealthManagerParams )
@@ -111,6 +120,8 @@ function love.load()
     playerLivesManager = PlayerLivesManagerCls.new ( Model.playerLivesManagerParams )
     
     scoreDisplayManager = ScoreDisplayManagerCls.new ( Model.scoreDisplayManagerParams )
+    
+    timedPowerUpSpawner = TimedPowerUpSpawnerCls.new ( Model.timedPowerUpSpawnerParams )
     
 end
 
@@ -127,6 +138,7 @@ function love.update(dt)
     notificationManager:update(dt)
     explosionManager: update(dt)
     coinSpawner:update(dt)
+    healthPackSpawner:update(dt)
   end
 end
 
@@ -144,6 +156,7 @@ function love.draw()
     explosionManager:draw()
     coinSpawner.draw()
     scoreDisplayManager.draw()
+    healthPackSpawner.draw()
     --love.graphics.print("You Win!", 180, 350)
 end
 

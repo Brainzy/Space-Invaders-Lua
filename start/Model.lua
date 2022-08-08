@@ -56,37 +56,49 @@ Model.playerLivesManagerParams = {
 Model.collisionManagerParams = {
     enemies,
     ship,
-    coinSpawner
+    coinSpawner,
+    healthPackSpawner
 }
 
 Model.scoreDisplayManagerParams = {
-    scoreForCoin = 2,
-    scoreForEnemy = 5,
-    scoreForLostLife = -50
+  scoreForCoin = 2,
+  scoreForEnemy = 5,
+  scoreForLostLife = -50
 }
 
+Model.timedPowerUpSpawnerParams = {
+  rngOnEnemyDeath = 10,
+}
+
+--timedPowerUpSpawnerParams
+
+Model.healthPackSpawnerParams = {
+  assetName = "health",
+  rng = 1, -- every second rolls 0,100
+  expiresAfter = 3
+}
 
 Model.enemyParams = {
-    assetName = "enemy",
-    enemyBullets,
-    explosionManager
+  assetName = "enemy",
+  enemyBullets,
+  explosionManager
 }
 
 Model.enemySpawnerParams = {
-   enemies,
-   notificationManager,
-   waveParams
+  enemies,
+  notificationManager,
+  waveParams
 }
 
 Model.coinSpawnerParams = {
-   assetName = "coin",
-   rng = 20, -- every second rolls 0,100
-   expiresAfter = 3
+  assetName = "coin",
+  rng = 20, -- every second rolls 0,100
+  expiresAfter = 3
 }
 
 Model.explosionManagerParams = {
-   assetName = "explosion",
-   explosionDuration = 0.3
+  assetName = "explosion",
+  explosionDuration = 0.3
 }
 
 Model.enemyPatrolShootEasyParams = {
@@ -123,6 +135,7 @@ Model.init = function()
     Model.playerHealthManagerParams.asset = AssetsManager.sprites[Model.playerHealthManagerParams.assetName]
     Model.explosionManagerParams.asset = AssetsManager.sprites[Model.explosionManagerParams.assetName]
     Model.coinSpawnerParams.asset = AssetsManager.sprites[Model.coinSpawnerParams.assetName]
+    Model.healthPackSpawnerParams.asset = AssetsManager.sprites[Model.healthPackSpawnerParams.assetName]
     
     --define enemies here
     Model.enemyParams.asset = AssetsManager.sprites[Model.enemyParams.assetName]
