@@ -50,12 +50,12 @@ end
 function Enemies:DestroyedByPlayer(index)
   
   local enemy = enemiesArr[index]
-  
-  if (enemy) then
-  PlayerKilledEnemyScoreEnter()
-  EnemyDiedPowerUpSpawnCheck(enemy.x, enemy.y)
-  explosionManager:EnemyExploded(enemy.x, enemy.y)
-  table.remove(enemiesArr, index)
+   PlayerKilledEnemyScoreEnter()
+   
+  if (enemy) then -- a nil check, in case it was already removed from table
+    EnemyDiedPowerUpSpawnCheck(enemy.x, enemy.y)
+    explosionManager:EnemyExploded(enemy.x, enemy.y)
+    table.remove(enemiesArr, index)
   end
 end
 

@@ -12,8 +12,8 @@ function CoinSpawner:init(params)
   asset = params.asset
   self.rng = 100 - params.rng  -- every second rolls 0,100
   self.expiresAfter = params.expiresAfter
-  w = asset:getWidth()+10
-  h = asset:getHeight()+10
+  w = asset:getWidth() + 10
+  h = asset:getHeight() + 10
   self.spawnX= Model.stage.stageWidth - w
   self.spawnY= Model.stage.stageWidth - h
 end
@@ -21,7 +21,7 @@ end
 function CoinSpawner:update(dt)
   timer = timer +dt
   
-  if (timer > lastRollTime + 1) then
+  if (timer > lastRollTime + 1) then -- roll every 1 second for coin
     lastRollTime = timer
     if (math.random(0,100) > self.rng) then
       local coin = {x = math.random() * self.spawnX, y = math.random() * self.spawnY, startTime = timer, w = w, h = h }

@@ -27,11 +27,11 @@ function EnemyBullets:update(dt)
     
     local removeThisBullet = false
   
-     if (AreShieldsActive()) then
+     if (AreShieldsActive()) then -- collision check against larger rectangle than ship
        if (CheckCollision(bulletsArr[i].x, bulletsArr[i].y, self.w, self.h, shipX,  shipY, self.shipW+50, self.shipH+80)) then
          removeThisBullet = true
        end
-     else
+     else -- bullet vs player collision check
         if (CheckCollision(bulletsArr[i].x, bulletsArr[i].y, self.w, self.h, shipX,  shipY, self.shipW, self.shipH)) then
          PlayerTookDamage(1)
          removeThisBullet = true

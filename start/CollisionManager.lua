@@ -37,7 +37,7 @@ function CheckPlayerCollisionWithEnemies(x,y,w,h)
       end
     end
   
-  -- magnets collision
+  -- magnets powerup collision
     
   local magnets = ReturnMagnets()
    for j=1, #magnets do
@@ -49,7 +49,7 @@ function CheckPlayerCollisionWithEnemies(x,y,w,h)
       end
    end
    
-   -- shields collision
+   -- shields powerup collision
    
    local shields = ReturnShields()
    for j=1, #shields do
@@ -61,7 +61,7 @@ function CheckPlayerCollisionWithEnemies(x,y,w,h)
       end
    end
    
-    -- fireAngles collision
+    -- fireAngles powerup collision
    
    local fireAngles = ReturnFireAngles()
    for j=1, #fireAngles do
@@ -73,7 +73,7 @@ function CheckPlayerCollisionWithEnemies(x,y,w,h)
       end
    end
    
-   -- fireRates collision
+   -- fireRates powerup collision
    
    local fireRates = ReturnFireRates()
    for j=1, #fireRates do

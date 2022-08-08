@@ -17,14 +17,14 @@ function Bullets:SpawnNewBullet(setSpeed, bulletType, posX, posY)
   local bullet = {speed =  setSpeed, bulletType = bulletType, x = posX, y = posY}
   table.insert(bulletsArr, bullet)
   
-  if (bulletType == "altAngle") then
+  if (bulletType == "altAngle") then -- bullet from FireAnglesPowerUp
     bullet = {speed =  setSpeed, bulletType = "altLeft", x = posX - 10 , y = posY}
     table.insert(bulletsArr, bullet)
     bullet = {speed =  setSpeed, bulletType = "altRight",x = posX + 10 , y = posY }
     table.insert (bulletsArr, bullet)
   end
   
-  if (bulletType == "tripleStraight") then
+  if (bulletType == "tripleStraight") then -- bullet from FireRate power up
     bullet = {speed =  setSpeed, bulletType = "tripleStraight", x = posX - 30 , y = posY}
     table.insert(bulletsArr, bullet)
     bullet = {speed =  setSpeed, bulletType = "tripleStraight",x = posX + 30 , y = posY }

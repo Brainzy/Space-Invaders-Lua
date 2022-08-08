@@ -16,7 +16,6 @@ function PowerShields:init(params)
   
   for i=1, self.shieldAmount do -- initialize shields
     local shield = {x,y, angle = 360/self.shieldAmount*i}
-    print(shield.angle)
     table.insert(shields, shield)
   end 
 end

@@ -21,7 +21,7 @@ function EnemySpawner:init(params)
 end
 
 
-function EnemySpawner:MakeCurrentLevelParams()
+function EnemySpawner:MakeCurrentLevelParams() -- finds spawning parameter for current level
   
   levelParams= {}
   
@@ -34,20 +34,14 @@ function EnemySpawner:MakeCurrentLevelParams()
     
     if (lvl.level == currentLevel) then
       
-      local lvlParam = {start = lvl.start + timer , endTime = lvl.endTime + timer, interval = lvl.interval, lastSpawn = 0, enemy = lvl.enemy}
+      local lvlParam = {start = lvl.start + timer +0.1 , endTime = lvl.endTime + timer +0.1, interval = lvl.interval, lastSpawn = 0, enemy = lvl.enemy}
       table.insert( levelParams, lvlParam )
       
       if (lvl.endTime +timer > currentLevelDuration) then
-        currentLevelDuration = lvl.endTime + timer
+        currentLevelDuration = lvl.endTime + timer +0.1
       end
     end
   end
-  
-  for i=1, #levelParams do
-   local lvl = levelParams[i]
-   print(timer,currentLevelDuration,lvl.start, lvl.endTime, lvl.interval, lvl.lastSpawn, lvl.enemy)
-  end
-  
 end
 
 function EnemySpawner:update(dt)
@@ -57,16 +51,15 @@ function EnemySpawner:update(dt)
   for i=1, #levelParams do
     local lvl = levelParams[i]
     
-    if (lvl) then
-      if (lvl.start <= timer  and timer <= lvl.endTime and timer - lvl.lastSpawn >= lvl.interval) then
+    if (lvl) then -- a nil check so few frames where new level is initialized are ignored
+      if (lvl.start <= timer  and timer <= lvl.endTime and timer - lvl.lastSpawn >= lvl.interval) then 
         lvl.lastSpawn = timer
         self.enemies:SpawnEnemy(lvl.enemy)
-        --print("zadato spawnovanje neprijatelja ",lvl.enemy,timer, lvl.start, lvl.endTime)
       end
   
       if (timer > currentLevelDuration) then
         if (self.enemies:ReturnEnemyNumber() == 0) then
-          currentLevel = currentLevel +1
+          currentLevel = currentLevel + 1
           
           if (currentLevel > maxLevel) then
             PlayerWonGame()
