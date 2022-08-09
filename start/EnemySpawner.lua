@@ -42,6 +42,10 @@ function EnemySpawner:MakeCurrentLevelParams() -- finds spawning parameter for c
       end
     end
   end
+   for i=1, #levelParams do
+    local lvl = levelParams[i]
+    print(timer,currentLevelDuration,lvl.start, lvl.endTime, lvl.interval)
+  end
 end
 
 function EnemySpawner:update(dt)

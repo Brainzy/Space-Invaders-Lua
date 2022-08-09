@@ -73,7 +73,7 @@ Model.timedPowerUpSpawnerParams = {
   fireRateName= "fireRate",
   magnetName= "magnet",
   shieldName= "shield",
-  rngOnEnemyDeath = 5,
+  rngOnEnemyDeath = 20,
   altAnglesChance = 25, -- 0-100, must be total 100 for all power ups
   greaterFireChance= 25,
   shieldChance = 25,
@@ -86,7 +86,7 @@ Model.timedPowerUpSpawnerParams = {
 
 Model.healthPackSpawnerParams = {
   assetName = "health",
-  rng = 1, -- every second rolls 0,100
+  rng = 2, -- every second rolls 0,100
   expiresAfter = 3
 }
 
@@ -104,7 +104,7 @@ Model.enemySpawnerParams = {
 
 Model.coinSpawnerParams = {
   assetName = "coin",
-  rng = 20, -- every second rolls 0,100
+  rng = 30, -- every second rolls 0,100
   expiresAfter = 3
 }
 
@@ -148,7 +148,40 @@ Model.enemyPatrolShootEasyParams = {
     bulletSpeed = 200
 }
 
+Model.enemyPatrolShootNormalParams = {
+    speed = 150,
+    fireRate = 1,
+    moveSide = true,
+    rngDirSides = 600,
+    moveDown = false,
+    rngDirDown = 99999999,
+    weaponType = "normal",
+    bulletSpeed = 200
+}
+
+Model.enemyPatrolShootHardParams = {
+    speed = 200,
+    fireRate = 1,
+    moveSide = true,
+    rngDirSides = 200,
+    moveDown = false,
+    rngDirDown = 99999999,
+    weaponType = "normal",
+    bulletSpeed = 200
+}
+
 Model.enemyKamikazeEasy = {
+    speed = 200,
+    fireRate = 9999999,
+    moveSide = true,
+    rngDirSides = 99999999,
+    moveDown = true,
+    rngDirDown = 600,
+    weaponType = "normal",
+    bulletSpeed = 200
+}
+
+Model.enemyKamikazeNormal = {
     speed = 300,
     fireRate = 9999999,
     moveSide = true,
@@ -158,6 +191,107 @@ Model.enemyKamikazeEasy = {
     weaponType = "normal",
     bulletSpeed = 200
 }
+
+Model.enemyKamikazeEasy = {
+    speed = 250,
+    fireRate = 9999999,
+    moveSide = false,
+    rngDirSides = 99999999,
+    moveDown = true,
+    rngDirDown = 600,
+    weaponType = "normal",
+    bulletSpeed = 200
+}
+
+Model.enemyKamikazeNormal = {
+    speed = 350,
+    fireRate = 9999999,
+    moveSide = true,
+    rngDirSides = 99999999,
+    moveDown = true,
+    rngDirDown = 600,
+    weaponType = "normal",
+    bulletSpeed = 200
+}
+
+Model.enemyKamikazeHard = {
+    speed = 450,
+    fireRate = 9999999,
+    moveSide = true,
+    rngDirSides = 600,
+    moveDown = true,
+    rngDirDown = 600,
+    weaponType = "normal",
+    bulletSpeed = 200
+}
+
+Model.enemyKamikazeEasyShooter = {
+    speed = 250,
+    fireRate = 3,
+    moveSide = false,
+    rngDirSides = 99999999,
+    moveDown = true,
+    rngDirDown = 600,
+    weaponType = "normal",
+    bulletSpeed = 200
+}
+
+Model.enemyKamikazeNormalShooter = {
+    speed = 350,
+    fireRate = 2,
+    moveSide = true,
+    rngDirSides = 99999999,
+    moveDown = true,
+    rngDirDown = 600,
+    weaponType = "normal",
+    bulletSpeed = 200
+}
+
+Model.enemyKamikazeHardShooter = {
+    speed = 450,
+    fireRate = 1,
+    moveSide = true,
+    rngDirSides = 600,
+    moveDown = true,
+    rngDirDown = 600,
+    weaponType = "normal",
+    bulletSpeed = 200
+}
+
+Model.enemySlowMoveShooterEasy = {
+    speed = 100,
+    fireRate = 3,
+    moveSide = true,
+    rngDirSides = 600,
+    moveDown = true,
+    rngDirDown = 600,
+    weaponType = "normal",
+    bulletSpeed = 300
+}
+
+Model.enemySlowMoveShooterNormal = {
+    speed = 120,
+    fireRate = 2,
+    moveSide = true,
+    rngDirSides = 600,
+    moveDown = true,
+    rngDirDown = 600,
+    weaponType = "normal",
+    bulletSpeed = 300
+}
+
+Model.enemySlowMoveShooterHard = {
+    speed = 140,
+    fireRate = 1,
+    moveSide = true,
+    rngDirSides = 600,
+    moveDown = true,
+    rngDirDown = 600,
+    weaponType = "normal",
+    bulletSpeed = 400
+}
+
+
 
 Model.init = function()
     Model.stage = {

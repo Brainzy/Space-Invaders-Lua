@@ -36,6 +36,16 @@ function CheckPlayerCollisionWithEnemies(x,y,w,h)
          return true
       end
     end
+    
+  local packs = healthPackSpawner:ReturnHealthPacks()
+   for j=1, #packs do
+      local pack = packs[j]
+      if (CheckCollision(x,y,w,h, pack.x,  pack.y, pack.w, pack.h)) then
+          PlayerCollectedHealthPack(1)
+          healthPackSpawner:HealthPackCollected(j)
+         return true
+      end
+    end
   
   -- magnets powerup collision
     

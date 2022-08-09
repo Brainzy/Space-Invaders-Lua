@@ -21,7 +21,7 @@ function Enemies:init(params)
 end
 
 function Enemies: SpawnEnemy(params)
-  local spawnX = math.random() * Model.stage.stageWidth
+  local spawnX = math.random() * (Model.stage.stageWidth - self.w)
   local spawnY = 0
   local xDir = 1 - 2 * math.random(0,1)  -- gives direction -1 or 1
   local yDir = 1 - 2 * math.random(0,1)  -- gives direction -1 or 1

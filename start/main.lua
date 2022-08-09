@@ -171,7 +171,6 @@ end
 
 
 function love.draw()
-    --love.graphics.draw(AssetsManager.sprites.fireAngles, 0,0 )
     stars:draw()
     ship:draw()
     bullets:draw()   
@@ -187,7 +186,6 @@ function love.draw()
     timedPowerUpSpawner.draw()
     powerMagnet.draw()
     powerShields.draw()
-    --love.graphics.print("You Win!", 180, 350)
 end
 
 
